@@ -106,7 +106,7 @@ def monte_carlo():
     fraction, rect_frac = font.render(f"{in_circle} / {in_square}", black)
     screen.blit(fraction, (15, 50))
     try:
-        return in_circle / in_square
+        return format(in_circle / in_square, ".60g")
     except ArithmeticError:  # in case in_square is zero
         return 0
 
@@ -166,9 +166,10 @@ v = rand_point(display_box.left, display_box.right,
 # otherwise nothing gets drawn until the simulation actually runs once
 full_reset()
 pygame.display.flip()
+
+# main loop
 while running:
     clock.tick(60)
-    keys = pygame.key.get_pressed()
     mouse_pos = pygame.mouse.get_pos()
     for button in buttons:
         if button.collidepoint(mouse_pos):
