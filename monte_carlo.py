@@ -20,6 +20,8 @@ white = (255, 255, 255)
 light_green = (0, 200, 0)
 red = (255, 0, 0)
 light_grey = (175, 175, 175)
+dark_grey = (100, 100, 100)
+aqua = (0, 255, 255)
 black = (0, 0, 0)
 precision = 10000
 size = width, height = 900, 900
@@ -36,8 +38,8 @@ square = pygame.Rect(display_box.centerx - 0.5 * radius,
                      display_box.centery - 0.25 *
                      display_box.height - 0.5 * radius,
                      radius, radius)
-square = pygame.draw.rect(screen, light_green, square)
-circle = pygame.draw.circle(screen, light_green,
+square = pygame.draw.rect(screen, dark_grey, square)
+circle = pygame.draw.circle(screen, dark_grey,
                             (display_box.centerx,
                              display_box.centery + 1/4 * display_box.height
                              ), radius)
@@ -45,13 +47,15 @@ in_circle = 0
 in_square = 0
 
 left_align_buttons = display_box.right + 30
-one = Button(screen, left_align_buttons, display_box.top, 50, 50, value=1)
-ten = Button(screen, left_align_buttons,
-             one.get_rect().bottom + 20, 50, 50, value=10)
+one = Button(screen, left_align_buttons, display_box.top, 50, 50,
+             value=1, color=dark_grey, highlight_color=aqua)
+ten = Button(screen, left_align_buttons, one.get_rect().bottom + 20,
+             50, 50, value=10, color=dark_grey, highlight_color=aqua)
 one_hundred = Button(screen, left_align_buttons, ten.get_rect().bottom + 20,
-                     50, 50, value=100)
+                     50, 50, value=100, color=dark_grey, highlight_color=aqua)
 one_thousand = Button(screen, left_align_buttons,
-                      one_hundred.get_rect().bottom + 20, 50, 50, value=1000)
+                      one_hundred.get_rect().bottom + 20, 50, 50, value=1000,
+                      color=dark_grey, highlight_color=aqua)
 buttons = [one, ten, one_hundred, one_thousand]
 # button rendering is handled in their own constructors
 last_ten_points = TenTuplesQueue()
@@ -92,16 +96,14 @@ def monte_carlo():
         ptext, prect = font.render(p, black)
         screen.blit(ptext, (650, y))
         y += font.size
-    # print(point)
-    # pygame.draw.circle(screen, red, point, 3)
     if check_square(square, point):
         in_square += 1
-        pygame.draw.circle(screen, red, point, 3)
-        # print(in_circle, in_square)
+        pygame.draw.circle(screen, aqua, point, 3)
     elif check_circle(circle.center, point):
         in_circle += 1
-        pygame.draw.circle(screen, red, point, 3)
-        # print(in_circle, in_square)
+        pygame.draw.circle(screen, aqua, point, 3)
+    else:
+        pygame.draw.circle(screen, light_grey, point, 1)
     pygame.draw.rect(screen, light_grey, pygame.Rect(15, 50, 1000, 24))
     fraction, rect_frac = font.render(f"{in_circle} / {in_square}", black)
     screen.blit(fraction, (15, 50))
@@ -149,10 +151,11 @@ def full_reset():
 def reset_draw():
     global display_box
     global square
+    global circle
 
     pygame.draw.rect(screen, white, display_box)
-    pygame.draw.rect(screen, light_green, square)
-    pygame.draw.circle(screen, light_green,
+    pygame.draw.rect(screen, dark_grey, square)
+    pygame.draw.circle(screen, dark_grey,
                        (display_box.centerx,
                         display_box.centery + 1/4 * display_box.height
                         ), radius)
