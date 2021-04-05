@@ -1,5 +1,6 @@
 import math
 
+
 def check_circle(center, radius, point):
     x1, y1 = center[0], center[1]
     x2, y2 = point[0], point[1]

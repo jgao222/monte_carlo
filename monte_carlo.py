@@ -29,10 +29,12 @@ running = True
 font = pygame.freetype.SysFont("Arial", 24)
 screen.fill(light_grey)
 number_back = pygame.Rect(45, 18, width - 25, 25)
-display_box = pygame.Rect(0.05 * width, 0.2 * height, 0.5 * width, 0.8 * height)
+display_box = pygame.Rect(0.05 * width, 0.2 * height,
+                          0.5 * width, 0.8 * height)
 pygame.draw.rect(screen, white, display_box)
 square = pygame.Rect(display_box.centerx - 0.5 * radius,
-                     display_box.centery - 0.25 * display_box.height - 0.5 * radius,
+                     display_box.centery - 0.25 *
+                     display_box.height - 0.5 * radius,
                      radius, radius)
 square = pygame.draw.rect(screen, light_green, square)
 circle = pygame.draw.circle(screen, light_green,
@@ -138,7 +140,8 @@ def full_reset():
     fraction, rect_frac = font.render(f"{in_circle} / {in_square}", black)
     screen.blit(fraction, (15, 50))
     # update points list
-    pygame.draw.rect(screen, white, pygame.Rect(630, one.get_rect().top, 150, 300))
+    pygame.draw.rect(screen, white, pygame.Rect(630,
+                     one.get_rect().top, 150, 300))
     # draw it all again
     reset_draw()
 
@@ -150,9 +153,9 @@ def reset_draw():
     pygame.draw.rect(screen, white, display_box)
     pygame.draw.rect(screen, light_green, square)
     pygame.draw.circle(screen, light_green,
-                            (display_box.centerx,
-                             display_box.centery + 1/4 * display_box.height
-                             ), radius)
+                       (display_box.centerx,
+                        display_box.centery + 1/4 * display_box.height
+                        ), radius)
     pygame.display.flip()
 
 
@@ -183,7 +186,7 @@ while running:
 
         # this could be better implemented with some listener or handler system
         if event.type == pygame.MOUSEBUTTONDOWN:
-            mouse_pos = event.pos  # could be redundant, get it exact to be safe
+            mouse_pos = event.pos  # could be redundant get it exact to be safe
             for button in buttons:
                 if button.collidepoint(mouse_pos):
                     simulate(button.get_value())

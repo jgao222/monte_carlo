@@ -6,6 +6,7 @@ print them
 
 from collections import deque
 
+
 class TenTuplesQueue:
 
     def __init__(self):
