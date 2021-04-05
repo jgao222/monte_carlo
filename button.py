@@ -9,6 +9,7 @@ from pygame import Rect
 import pygame.draw
 import pygame.freetype
 
+
 class Button:
     """
     Button class
@@ -46,14 +47,14 @@ class Button:
         self._screen.blit(self._label,
                           (self._shape.centerx - (self._label_rect.width / 2),
                            self._shape.centery - (self._label_rect.height / 2))
-                         )
+                          )
 
     def redraw(self):
         pygame.draw.rect(self._screen, self._color, self._shape)
         self._screen.blit(self._label,
-                    (self._shape.centerx - (self._label_rect.width / 2),
-                     self._shape.centery - (self._label_rect.height / 2))
-                   )
+                          (self._shape.centerx - (self._label_rect.width / 2),
+                           self._shape.centery - (self._label_rect.height / 2))
+                          )
 
     def on_hover(self):
         self.highlight()
