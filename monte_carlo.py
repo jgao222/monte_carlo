@@ -31,8 +31,8 @@ screen.fill(light_grey)
 number_back = pygame.Rect(45, 18, width - 25, 25)
 display_box = pygame.Rect(0.05 * width, 0.2 * height, 0.5 * width, 0.8 * height)
 pygame.draw.rect(screen, white, display_box)
-square = pygame.Rect(display_box.centerx - 1/2 * radius,
-                     display_box.centery - 1/4 * display_box.height - 1/2 * radius,
+square = pygame.Rect(display_box.centerx - 0.5 * radius,
+                     display_box.centery - 0.25 * display_box.height - 0.5 * radius,
                      radius, radius)
 square = pygame.draw.rect(screen, light_green, square)
 circle = pygame.draw.circle(screen, light_green,
@@ -46,15 +46,13 @@ left_align_buttons = display_box.right + 30
 one = Button(screen, left_align_buttons, display_box.top, 50, 50, value=1)
 ten = Button(screen, left_align_buttons,
              one.get_rect().bottom + 20, 50, 50, value=10)
-# one_hundred = pygame.Rect(one.left, one.bottom + 20, 50, 50)
 one_hundred = Button(screen, left_align_buttons, ten.get_rect().bottom + 20,
                      50, 50, value=100)
 one_thousand = Button(screen, left_align_buttons,
-                           one_hundred.get_rect().bottom + 20, 50, 50, value=1000)
+                      one_hundred.get_rect().bottom + 20, 50, 50, value=1000)
 buttons = [one, ten, one_hundred, one_thousand]
 # button rendering is handled in their own constructors
 last_ten_points = TenTuplesQueue()
-
 
 
 def rand_point(left, right, top, bottom):
